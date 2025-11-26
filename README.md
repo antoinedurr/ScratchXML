@@ -2,7 +2,7 @@
 Python module to read and write Assimilate Scratch custom-command XML output.
 
 ### Description
-The _ScratchXML_ module refactors the XML output from [Assimilate Scratch](https://www.assimilateinc.com/products/) custom commands into a hierarchy of ScratchElement objects.  
+The _ScratchXML_ module refactors the XML output from [Assimilate Scratch](https://www.assimilateinc.com/products/) custom commands into a hierarchy of ScratchElement objects.
 You output XML using Scratch's [Custom Commands](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx).
 Then the _ScratchXML_ module can be used to read and convert the XML to a corresponding hierarchy of ScratchElement instances.
 The resulting data can be easily examined using in a dictionary or attribute approach, e.g. `shot['length']` or `shot.length`.
