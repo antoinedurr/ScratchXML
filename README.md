@@ -2,11 +2,13 @@
 Python module to read and write Assimilate Scratch custom-command XML output.
 
 ### Description
-The _ScratchXML_ module refactors the XML output from [Assimilate Scratch](https://www.assimilateinc.com/products/) custom commands into a hierarchy of ScratchElement objects.
-You output XML using Scratch's [Custom Commands](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx).
-Then the _ScratchXML_ module can be used to read and convert the XML to a corresponding hierarchy of ScratchElement instances.
+The _ScratchXML_ module creates a Pythonic representation of the hierarchy in a [Assimilate Scratch](https://www.assimilateinc.com/products/) project.
+It defines Scratch(), Construct(), Slot(), and Shot() classes that closely mirror the XML output from Scratch.
+The typical usage is to create a Scratch [Custom Command](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) that reads the XML exported by Scratch prior to running the custom command.
+ScratchXML refactors the XML output into the corresponding hierarchy of ScratchElement instances.
 The resulting data can be easily examined using in a dictionary or attribute approach, e.g. `shot['length']` or `shot.length`.
 Elements that are inline, e.g. the `uuid` in <shot uuid='123456789123456789'> are imported and accessible as `shot['@uuid']` or `shot.uuid`.
+You can also create Scratch timelines from -- scratch, then output the XML and read them into Scratch.
 
 ### Dependencies
 This module depends on the [xml2dict](https://pypi.org/project/XML2Dict/) module.
@@ -29,6 +31,14 @@ for slot in s.constructs[0].slots:
   slot.shots = revers3ed(slot.shots)  # see limitations
 s['update'] = "Y" # tell Scratch to update from the resulting xml
 s.write('res-0.xml')  # write out resulting file
+```
+
+You can also create a Scratch timeline:
+```
+s = Scratch()
+s.constructs.append(Slot())
+s.constructs[0].slots[0].append(Shot())
+s.write(xml="new.xml")
 ```
 
 ### Limitations
