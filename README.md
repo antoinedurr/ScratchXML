@@ -32,6 +32,7 @@ s.write('res-0.xml')  # write out resulting file
 ```
 
 ### Limitations
+- As of 2025/11/26 only Timeline exports are handled.  These can be with or without selected shots.
 - Scratch XML doesn't contain the _entire_ project.  For example, only base grades are included, layers are not
 - when reading XML back in, Scratch won't rearrange shots -- it's really only designed to modify shots in place
 - the solution to the above is to manually import the XML that the custom command wrote out.
