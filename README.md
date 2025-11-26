@@ -28,7 +28,7 @@ A more sophisticated usage reverses shot versions within a slot:
 s = Scratch(xml='cmd-0.xml')
 slotnames = 
 for slot in s.constructs[0].slots:
-  slot.shots = revers3ed(slot.shots)  # see limitations
+  slot.shots = reversed(slot.shots)  # see limitations
 s['update'] = "Y" # tell Scratch to update from the resulting xml
 s.write('res-0.xml')  # write out resulting file
 ```
