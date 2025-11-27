@@ -113,8 +113,12 @@ class ScratchElement:
         elif '@project' in self.xmldict:
             name = self.project  # for top level Scratch object
         else:
-            name = f"{qualname} {self.index}"  # for slots since they only have indices
-    
+            if '@index' in self.xmldict:
+                # for slots since they only have indices
+                name = f"{qualname} {self.index}"
+            else:
+                name = f"{qualname}"
+
         return f'<{module}.{qualname} object "{name}" at {hex(id(self))}>'
         # return f"<{self.__class__.__name__} <{self.name}> {hex(id(self))}>"
 
