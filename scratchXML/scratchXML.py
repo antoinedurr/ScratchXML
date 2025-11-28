@@ -8,7 +8,6 @@ import pprint
 class Lineage:
     '''
     Simple container to name our 3 items and make sure that _lineage is properly defined
-
     '''
     def __init__(self, collective: str, child: str, childclass: type['ScratchElement']):
         self.collective = collective # e.g. 'constructs'
@@ -160,7 +159,7 @@ class ScratchElement:
 
     def parsemeta(self):
         '''
-        the metadata is another special case, it's a dict of dataitems that we want to convert to a simple dict
+        Refactor the dict of dataitems into a simple key:value dictionary of metadata name, metadata value
         '''
         if 'metadata' not in self.xmldict:
             self.xmldict['metadata'] = {}
@@ -170,7 +169,7 @@ class ScratchElement:
 
     def unparsemeta(self):
         '''
-        undo the metadata dict to dataitem array
+        Undo the metadata dict back to a dataitem array
         '''
         if 'metadata' in self.xmldict:
             self.xmldict['metadata'] = {'dataitem': [{'key': k, 'value': v} for k, v in self.xmldict['metadata'].items()]}
@@ -192,6 +191,11 @@ class Scratch(ScratchElement):
         super().__init__(xmldict, self._lineage, parsemeta=True) # rerun the ScratchElement constructor which will invoke parsechildren
 
     def read(self, xml=None):
+        '''
+        Read an XML file and return the parsed dictionary.
+        
+        :param xml: Filepath of XML file.
+        '''
         if xml:
             with open(xml, 'r') as fp:
                 file_content = fp.read()
@@ -201,6 +205,11 @@ class Scratch(ScratchElement):
         return None
 
     def write(self, xml=None):
+        '''
+        Write the current dictionary to an XML file.
+        
+        :param xml: Filepath of XML file.
+        '''
         if xml:
             self.xmldict = self.unparsechildren()
 
@@ -218,6 +227,9 @@ class Group(ScratchElement):
 # ---------------------------------------------------------------------
 
 class Construct(ScratchElement):
+    '''
+    Object representation of a Scratch Construct, which contains Slots
+    '''
     def __init__(self, xmldict=None):
         self._lineage = Lineage('slots', 'slot', Slot)
         super().__init__(xmldict, self._lineage)
@@ -225,6 +237,9 @@ class Construct(ScratchElement):
 # ---------------------------------------------------------------------
 
 class Slot(ScratchElement):
+    '''
+    Object representation of a Scratch Slot, which contains Shots
+    '''
     def __init__(self, xmldict=None):
         self._lineage = Lineage('shots', 'shot', Shot)
         super().__init__(xmldict, self._lineage)
@@ -235,27 +250,50 @@ class Slot(ScratchElement):
 
     # remove the named element
     def removeshot(self, removeshot):
+        '''
+        Remove shot from the slot.  Expects a Shot instance, from which it will match the UUID.
+        
+        :param removeshot: Shot() instance to remove
+        '''
         print(f"removeshot(): Removing shot {removeshot['@uuid']} from slot {self.index}")
         self.xmldict['shots'] = [shot for shot in self.xmldict['shots'] if shot['@uuid'] != removeshot['@uuid']]
         self.renumbershots()
 
     def insertshot(self, index, shot):
+        '''
+        Insert a shot at a specific index in the slot.
+
+        :param index: Position to insert the shot.
+        :param shot: Shot instance to insert.
+        '''
         self.xmldict['shots'].insert(index, shot) # this time we can use list.insert as
         self.renumbershots()
 
     # redo the @layer numbering
     def renumbershots(self):
+        '''
+        Renumber the @layer attributes of all shots in the slot.  This is called automatically after an insertshot 
+        or removeshot operation, so that the @layer attributes remain consistent.
+        '''
         for index, shot in enumerate(self.xmldict['shots']):
             shot['@layer'] = str(index)
             shot['@slot'] = str(self.xmldict['@index'])
 
     def listshots(self, prefix=""):
+        '''
+        List the shots in this slot.
+
+        :param prefix: Often sets of spaces for indentation.
+        '''
         for index, shot in enumerate(self.xmldict['shots']):
             print(f"{prefix}Layernum: {index}:", shot.name)
 
 # ---------------------------------------------------------------------
 
 class Shot(ScratchElement):
+    '''
+    Object representation of a Scratch Shot.  This is also known as a version in the Scratch UI.
+    '''
     def __init__(self, xmldict=None):
         self._lineage = None
         super().__init__(xmldict, self._lineage, parsemeta=True)
@@ -274,11 +312,24 @@ class Shot(ScratchElement):
         return int(self.xmldict['@slot'])
     
     def move(self, sourceslot: Slot, destslot: Slot, destlayer: int):
+        '''
+        Move this shot from one slot to another at the specified layer.
+
+        :param sourceslot: Source slot
+        :type sourceslot: Slot
+        :param destslot: Destination slot
+        :type destslot: Slot
+        :param destlayer: The index in the destination slot where the shot should be inserted
+        :type destlayer: int
+        '''
         print(f"move(): Moving shot {self.xmldict['@uuid']} from slot {sourceslot.index} to slot {destslot.index}")
         # shot = sourceslot.shots[self.layer] # get our claws on the shot being relocated
         sourceslot.removeshot(self) # remove from original
         destslot.insertshot(destlayer, self) # and put where it needs to go
 
     def shotname(self):
+        '''
+        Convenience method to get the name of the shot.
+        '''
         return self.name
 
