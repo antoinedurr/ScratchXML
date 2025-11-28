@@ -119,7 +119,9 @@ class ScratchElement:
             else:
                 name = f"{qualname}"
 
+        # return f'<{module}.{qualname} object "{name}" at {hex(id(self))}>'
         return f'<{module}.{qualname} object "{name}" at {hex(id(self))}>'
+
         # return f"<{self.__class__.__name__} <{self.name}> {hex(id(self))}>"
 
     def parsechildren(self, lineage: Lineage):

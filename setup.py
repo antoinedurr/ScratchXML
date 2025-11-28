@@ -15,7 +15,7 @@ setup(
     author_email="antoine@antoinedurr.com",
     url="https://github.com/antoinedurr/ScratchXML",
     license="MIT",
-    packages=find_packages(where='scratchXML', exclude=("tests", "docs")),
+    packages=find_packages(exclude=("tests", "docs")),
     include_package_data=True,
     install_requires=[
         "xmltodict",
