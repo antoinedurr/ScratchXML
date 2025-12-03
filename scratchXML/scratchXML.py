@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 #
-# A library for Assimilate Scratch
+# A library for Assimilate Scratch 
 #
 import xmltodict
 import pprint
@@ -138,8 +138,11 @@ class ScratchElement:
 
         This is done through the constructors, when they are fed xmldict's, they go and parse 
         '''
-        # if lineage.collective not in self.xmldict: # if 'slots' not in self.xmldict
-        #     self.xmldict[lineage.collective] = {}
+        # print(f"self: {self}, {lineage.collective} {self.xmldict.keys()}")
+
+        # deal with things like empty slots
+        if lineage.collective not in self.xmldict or self.xmldict.get(lineage.collective) is None: # if 'slots' not in self.xmldict
+            self.xmldict[lineage.collective] = {}
 
         collection = [lineage.childclass(xmldict=elem) for elem in self.xmldict.get(lineage.collective, {}).get(lineage.child, [])]
 
@@ -233,6 +236,34 @@ class Construct(ScratchElement):
     def __init__(self, xmldict=None):
         self._lineage = Lineage('slots', 'slot', Slot)
         super().__init__(xmldict, self._lineage)
+
+    def shots(self, selected=False, bottom_row=False, uuid_only=False):
+        '''
+        Return the shots in this timeline construct
+
+        selected: if True, return only the selected shots
+        bottom_row: if True, return only the shots in the bottom row (slot 0)
+        uuid_only: if True, return only the UUIDs of the selected shots
+        '''
+
+        shots = []
+        for slot in self.slots:
+            for shot in slot.shots:
+                if selected:
+                    if shot.get('@selected') == "Y":
+                        shots.append(shot)
+                elif bottom_row:
+                    if shot.layer == 0:
+                        shots.append(shot) 
+                else:
+                    shots.append(shot)
+                        
+        if uuid_only:
+            shots = [shot.uuid for shot in shots]
+
+        return shots
+
+
 
 # ---------------------------------------------------------------------
 
