@@ -4,6 +4,7 @@
 #
 import xmltodict
 import pprint
+import re
 
 class Lineage:
     '''
@@ -237,7 +238,7 @@ class Construct(ScratchElement):
         self._lineage = Lineage('slots', 'slot', Slot)
         super().__init__(xmldict, self._lineage)
 
-    def shots(self, selected=False, bottom_row=False, uuid_only=False):
+    def shots(self, selected=None, bottom_row=None, uuid_only=False):
         '''
         Return the shots in this timeline construct
 
@@ -249,24 +250,45 @@ class Construct(ScratchElement):
         shots = []
         for slot in self.slots:
             for shot in slot.shots:
-                if selected:
-                    if shot.get('@selected') == "Y":
-                        shots.append(shot)
-                elif bottom_row:
-                    if shot.layer == 0:
-                        shots.append(shot) 
-                else:
+                include_sel = True
+                include_bot = True
+                if selected is True and shot.get('@selected') != "Y":
+                    include_sel = False
+                if selected is False and shot.get('@selected') == "Y":
+                    include_sel = False
+                if bottom_row is True and shot.layer != 0:
+                    include_bot = False
+                if bottom_row is False and shot.layer == 0:
+                    include_bot = False
+
+                if include_sel and include_bot:
                     shots.append(shot)
-                        
+
         if uuid_only:
             shots = [shot.uuid for shot in shots]
 
         return shots
 
+    def slotnames(self, regex):
+        '''
+        Return the names of the slots in this construct, optionally filtered by a regex.
 
+        :param regex: Regular expression to filter slot names.
+        '''
+        slot_names = {}
 
-# ---------------------------------------------------------------------
+        for slot in self.slots:
+            if slot.shots:
+                shot = slot.shots[0]
 
+                match = re.match(regex, shot.name)
+                if match:
+                    shotname = match.group(0)
+                    if shotname not in slot_names: # don't accept duplicates
+                        slot_names[shotname] = slot.index
+
+        return slot_names
+    
 class Slot(ScratchElement):
     '''
     Object representation of a Scratch Slot, which contains Shots
@@ -286,7 +308,7 @@ class Slot(ScratchElement):
         
         :param removeshot: Shot() instance to remove
         '''
-        print(f"removeshot(): Removing shot {removeshot['@uuid']} from slot {self.index}")
+        # print(f"removeshot(): Removing shot {removeshot['@uuid']} from slot {self.index}")
         self.xmldict['shots'] = [shot for shot in self.xmldict['shots'] if shot['@uuid'] != removeshot['@uuid']]
         self.renumbershots()
 
@@ -353,14 +375,23 @@ class Shot(ScratchElement):
         :param destlayer: The index in the destination slot where the shot should be inserted
         :type destlayer: int
         '''
-        print(f"move(): Moving shot {self.xmldict['@uuid']} from slot {sourceslot.index} to slot {destslot.index}")
+        # print(f"move(): Moving shot {self.xmldict['@uuid']} from slot {sourceslot.index} to slot {destslot.index}")
         # shot = sourceslot.shots[self.layer] # get our claws on the shot being relocated
         sourceslot.removeshot(self) # remove from original
         destslot.insertshot(destlayer, self) # and put where it needs to go
 
-    def shotname(self):
+    def shotname(self, regex=None):
         '''
-        Convenience method to get the name of the shot.
+        Convenience method to get the name of the shot, or filtered by a regex.
         '''
-        return self.name
+
+
+        if regex is None:
+            return self.name
+        else:
+            match = re.match(regex, self.name)
+            if match:
+                return match.group(0)
+            else:
+                return None
 
