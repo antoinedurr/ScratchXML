@@ -7,7 +7,7 @@ long_description = (HERE / "README.md").read_text(encoding="utf-8") if (HERE / "
 
 setup(
     name="scratchxml",
-    version="0.1.5",
+    version="0.1.6",
     description="Read and write Assimilate Scratch custom-command XML as Python objects",
     long_description=long_description,
     long_description_content_type="text/markdown",
