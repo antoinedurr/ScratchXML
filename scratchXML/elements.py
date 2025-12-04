@@ -382,10 +382,13 @@ class Shot(ScratchElement):
 
     def shotname(self, regex=None):
         '''
-        Convenience method to get the name of the shot, or filtered by a regex.
+        Convenience method to get the name of the shot
+        
+        :param regex: Regular expression to filter the shot name.
+        :type regex: str or None
+        :return: The shot name if no regex is provided, otherwise the matching portion of the name or None if no match.
+        :rtype: str or None
         '''
-
-
         if regex is None:
             return self.name
         else:

@@ -1,2 +1,3 @@
 # my_package/__init__.py
-from .scratchXML import Scratch, Construct, Slot, Shot
+from .elements import Scratch, Construct, Slot, Shot
+from .utils import shotinfo, parseargs
