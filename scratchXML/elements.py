@@ -155,6 +155,7 @@ class ScratchElement:
         '''
         This is called recursively to undo the objectification of the element array
         '''
+        self.unparsemeta()
         if self._lineage:
             temp = {self._lineage.child: [element.unparsechildren() for element in self.xmldict[self._lineage.collective]]} # expand constructs
             return {**self.xmldict, **{self._lineage.collective: temp}}  # and superimpose it 
@@ -191,7 +192,9 @@ class Scratch(ScratchElement):
 
         if xml:
             xmldict = self.read(xml=xml)['scratch'] # bootstrap into hierarchy
-        
+            # print("unparsedchildren before:")
+            # pprint.pprint(xmldict)
+
         super().__init__(xmldict, self._lineage, parsemeta=True) # rerun the ScratchElement constructor which will invoke parsechildren
 
     def read(self, xml=None):
@@ -215,12 +218,12 @@ class Scratch(ScratchElement):
         :param xml: Filepath of XML file.
         '''
         if xml:
-            self.xmldict = self.unparsechildren()
+            self.xmldict = {'scratch': self.unparsechildren()}
 
             # print("unparsedchildren after:")
             # pprint.pprint(self.xmldict)
             with open(xml, 'w') as fp:
-                file_content = xmltodict.unparse({'scratch': self.xmldict}, pretty=True) # unbootstrapped dict has single key, 'scratch'
+                file_content = xmltodict.unparse(self.xmldict, pretty=True) # unbootstrapped dict has single key, 'scratch'
                 fp.write(file_content) 
 
 # ---------------------------------------------------------------------
