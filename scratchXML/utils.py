@@ -99,5 +99,5 @@ Scratch custom command settings:
     
         print("scratchXML:", command, parsedargs.inputxml, parsedargs.outputxml if hasattr(parsedargs, 'outputxml') else '', file=sys.stderr)
 
-        return scratchargs(**vars(parsedargs))
+        return scratchargs(**vars(parsedargs)) # give it back to them with our name on it instead of simplenamespace
 

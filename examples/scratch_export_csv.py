@@ -2,17 +2,14 @@
 #
 # A library for Assimilate Scratch
 #
-import sys, os
+import sys
+import os
 
 from pathlib import Path
 import pprint
-from types import SimpleNamespace
-import argparse
 import csv
 import pyperclip
 import subprocess
-
-import sys
 
 from scratchXML import Scratch
 from scratchXML import scratchparse, shotinfo
@@ -25,39 +22,39 @@ This will write it to the Scratch project Temp folder as <construct_name>.csv
 
 Once written, it calls 'open' on the csv file for viewing.  It also places the csv filepath into the copy/paste buffer.
     '''
-    parser = scratchparse(usage=main.__doc__, require_shot_selection=False, wait_til_finished=False)
-    parser.add_argument('-meta', action='store_true', help='Include all metadata keys in the CSV')
-    parser.parse_args()
+    parser = scratchparse(
+        usage=main.__doc__, require_shot_selection=False, wait_til_finished=False)
+    parser.add_argument('-meta', action='store_true',
+                        help='Include all metadata keys in the CSV')
+    args = parser.parse_args()
 
-    print("parser", parser)
-    exit()
-
+    # we shouldn't be getting any groups and just the one construct
     scratch = Scratch(xml=args.inputxml)
+    timeline = scratch.constructs[0]
 
-    metakeys = set()
-    shotlist = []
-    
-    construct = scratch.constructs[0]
-    allshots = construct.shots()
-    selectedshots = construct.shots(selected=True)
-    shots = selectedshots if len(selectedshots) > 0 else allshots
+    # user can select some shots and it'll generate the csv for those only, else it'll generate it for all shots
+    shots = timeline.shots(selected=True) or timeline.shots()
+
+    metakeys = set()  # the set of all metadata keys across all shots
+    shotlist = []  # the list of shots' shotinfo objects
 
     for shot in shots:
         metakeys.update(shot.metadata.keys())
 
-        shotdata = shotinfo(slotindex=shot.slot, layer=shot.layer, length=shot.length, name=shot.name, path=shot.file)
+        shotdata = shotinfo(slotindex=shot.slot, layer=shot.layer,
+                            length=shot.length, name=shot.name, path=shot.file)
         if args.meta:
             shotdata.__dict__.update(shot.metadata)
-    
+
         shotlist.append(shotdata)
-        
-    csvfile = Path(scratch.temp_path) / f"{construct.name}.csv"
+
+    csvfile = Path(scratch.temp_path) / f"{timeline.name}.csv"
 
     with open(csvfile, mode='w', newline='') as csvfile:
         fieldnames = ['slotindex', 'layer', 'length', 'name', 'path']
         if args.meta:
             fieldnames += list(metakeys)
-            
+
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
@@ -71,4 +68,3 @@ Once written, it calls 'open' on the csv file for viewing.  It also places the c
 
 if __name__ == "__main__":
     main()
-    
