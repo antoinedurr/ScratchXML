@@ -102,6 +102,13 @@ class ScratchElement:
             raise AttributeError(f"{self.__class__.__name__} object has no attribute '{key}'")
     
     def __setattr__(self, key, val):
+        # if key in self.xmldict:
+        #     self.xmldict[key] = val
+        # elif '@'+key in self.xmldict:
+        #     self.xmldict['@'+key] = val
+        # else:
+        # print(f"Warning: Setting new attribute, {key}, instead of updating xmldict.  Use [{key}] to update xmldict.")
+        # havent figured. out how to do this cleanly yet
         super().__setattr__(key, val)
 
     def __repr__(self):
