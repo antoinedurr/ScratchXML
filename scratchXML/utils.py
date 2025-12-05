@@ -11,7 +11,9 @@ import argparse
 class shotinfo(SimpleNamespace):
     pass  # convenient namespace for shot data
 
-class scratchargs(argparse.ArgumentParser):
+class scratchargs(SimpleNamespace): pass
+
+class scratchparse(argparse.ArgumentParser):
     '''
     Argparse helper to parse common Scratch custom command arguments.  Adds an input-xml and an optional output-xml argument.
 
@@ -49,10 +51,6 @@ Scratch custom command settings:
     def add_argument(self, *args, **kwargs):
         '''
         Overlay of add_argument that appends to the epilog
-        
-        :param self: Description
-        :param args: Description
-        :param kwargs: Description
         '''
         super().add_argument(*args, **kwargs)
         # -pos <position=bottom> : [bottom, top]
@@ -90,6 +88,7 @@ Scratch custom command settings:
     def parse_args(self, args=None, namespace=None):
         '''
         Overlay of parse_args to handle Scratch's quirk of adding an empty string as last argument.
+        Also prints out some debug info to stderr.
         '''
         command = sys.argv[0]
         if args is None:
@@ -100,5 +99,5 @@ Scratch custom command settings:
     
         print("scratchXML:", command, parsedargs.inputxml, parsedargs.outputxml if hasattr(parsedargs, 'outputxml') else '', file=sys.stderr)
 
-        return parsedargs
+        return scratchargs(**vars(parsedargs))
 
