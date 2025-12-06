@@ -67,10 +67,10 @@ There are some convenience methods, e.g. a Construct() has a shots() method, so 
 ```
 from scratchXML import Scratch
 scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
-shots = scratch.construct[0].shots()
+shots = scratch.construct[0].shots() # get list of all shots in timeline
 
-for shot in shots: # finally, iterate through all the shots
-  print(f"Shot: {shot.name} ({shot.slot} {shot.layer} Metadata: {shot.metadata}") # print out metadata for each shot
+for shot in shots: # iterate through all the shots
+  print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
 ```
 
 #### Reverse shot order within slots
