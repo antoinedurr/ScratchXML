@@ -15,7 +15,10 @@ Elements that are inline, e.g. the `uuid` in <shot uuid='123456789123456789'> ar
 You can also create Scratch timelines from -- scratch, then output the XML and read them into Scratch.
 
 ### Dependencies
-This module depends on the [xml2dict](https://pypi.org/project/XML2Dict/) module.
+This module depends on the [xml2dict](https://pypi.org/project/XML2Dict/) module which you can get via:
+```
+pip install xml2dict
+```
 
 ### Installing
 ```
