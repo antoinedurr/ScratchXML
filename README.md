@@ -14,18 +14,29 @@ The resulting data can be easily examined using in a dictionary or attribute app
 Elements that are inline, e.g. the `uuid` in <shot uuid='123456789123456789'> are imported and accessible as `shot['@uuid']` or `shot.uuid`.
 You can also create Scratch timelines from -- scratch, then output the XML and read them into Scratch.
 
-### Dependencies
-This module depends on the [xmltodict](https://pypi.org/project/xmltodict) module which you can get via:
-```
-pip install xmltodict
-```
 
 ### Installing
 ```
 pip install git+https://github.com/antoinedurr/ScratchXML
 ```
+#### Dependencies
+This module depends on the [xmltodict](https://pypi.org/project/xmltodict) module which you can get via:
+```
+pip install xmltodict
+```
 
-### Using/Importing
+
+
+### Examples
+The `examples` folder contains a number of Scratch custom command Python scripts.  These contain
+fully working Scratch custom commands.
+
+- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
+- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
+
+
+### Getting Started
+#### Using/Importing
 The most typical approach is to process XML output by Scratch.
 ```
 from scratchXML import Scratch
@@ -41,15 +52,6 @@ The module also defines some utilities that make custom commands easier to write
 from scratchXML import scratchparse, shotinfo
 ```
 
-### Examples
-The `examples` folder contains a number of Scratch custom command Python scripts.  These contain
-fully working Scratch custom commands.
-
-- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
-- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
-
-
-### Getting Started
 #### Print shots and metadata
 ```
 from scratchXML import Scratch
@@ -97,6 +99,7 @@ s.constructs.append(Slot())
 s.constructs[0].slots[0].append(Shot())
 s.write(xml="new.xml")
 ```
+N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
 
 ### Limitations
 - As of November 2025, only Timeline exports are handled.  These can be with or without selected shots.
