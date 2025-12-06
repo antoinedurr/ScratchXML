@@ -28,7 +28,7 @@ pip install xmltodict
 
 
 ### Examples
-The `examples` folder contains a number of Scratch custom command Python scripts.  These contain
+The `examples` folder contains Scratch custom command Python scripts.  These contain
 fully working Scratch custom commands.
 
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
