@@ -23,12 +23,12 @@ pip install git+https://github.com/antoinedurr/ScratchXML
 ```
 
 ### Using/Importing
-The most typical approach is to process XML output by Scratch.  To do this you'll need to:
+The most typical approach is to process XML output by Scratch.
 ```
 from scratchXML import Scratch
 ```
 
-If you are creating an XML file from the ground up, then you'll need to import the rest:
+If you are creating an XML file from the ground up, then you'll need to import all the elements:
 ```
 from scratchXML import Scratch, Construct, Slot, Shot
 ```
@@ -39,6 +39,14 @@ from scratchXML import scratchparse, shotinfo
 ```
 
 ### Examples
+The `examples` folder contains a number of Scratch custom command Python scripts.  These contain
+fully working Scratch custom commands.
+
+- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
+- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
+
+
+### Getting Started
 #### Print shots and metadata
 ```
 from scratchXML import Scratch
@@ -51,7 +59,7 @@ for construct in scratch.constructs: # iterate through all the constructs (there
 ```
 Attributes on objects can be read as attributes or dictionary elements (shot['name'] == shot.name).  However, they currently can only be updated as dictionary elements.
 
-#### Print shots and metadata (easier)
+#### Print shot names and metadata (easier)
 There are some convenience methods, e.g. a Construct() has a shots() method, so the above could be shortened to:
 ```
 from scratchXML import Scratch
@@ -71,8 +79,8 @@ scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch(
 for construct in scratch.constructs:
   for slot in s.constructs[0].slots:
     slot.shots = reversed(slot.shots)  # see limitations
-s['update'] = "Y" # tell Scratch to update from the resulting xml
-s.write('res-0.xml')  # write out resulting file
+scratch['update'] = "Y" # tell Scratch to update from the resulting xml
+scratch.write('res-0.xml')  # write out resulting file
 ```
 
 #### Create XML from scratch
@@ -89,6 +97,7 @@ s.write(xml="new.xml")
 
 ### Limitations
 - As of November 2025, only Timeline exports are handled.  These can be with or without selected shots.
+- Most attributes need to be modified using dictionary updates, e.g. shot['MOS'] = "N", not shot.MOS = "N".
 - Scratch XML doesn't contain the _entire_ project.  For example, only base grades are included, layers are not
 - when reading XML back in, Scratch won't rearrange shots -- it's really only designed to modify shots in place
   - the solution to the above is to manually import the output XML into Scratch.
