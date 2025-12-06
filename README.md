@@ -65,11 +65,11 @@ for construct in scratch.constructs: # iterate through all the constructs (there
 Attributes on objects can be read as attributes or dictionary elements (shot['name'] == shot.name).  However, they currently can only be updated as dictionary elements.
 
 #### Print shot names and metadata (easier)
-There are some convenience methods, e.g. a Construct() has a shots() method, so the above could be shortened to:
+There are some convenience methods, e.g. Construct() has a shots() method, so the above could be shortened to:
 ```
 from scratchXML import Scratch
 scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
-shots = scratch.construct[0].shots() # get list of all shots in timeline
+shots = construct.shots(selected=True) or construct.shots() # get list of selected shots in timeline, or if no selection, all shots
 
 for shot in shots: # iterate through all the shots
   print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
@@ -100,6 +100,22 @@ s.constructs[0].slots[0].append(Shot())
 s.write(xml="new.xml")
 ```
 N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
+
+#### parsing the command line
+With `scratchparse` you can easily parse the command line as a Scratch custom-command:
+```
+from scratchXML import scratchparse
+
+parser = scratchparse(usage=“Print out shot info", require_shot_selection=False)
+args = parser.parse_args()
+
+scratch = Scratch(xml=args.inputxml) # ‘inputxml’ is the standard args attribute for the XML that Scratch writes out to Temp
+timeline = scratch.constructs[0]
+
+shots = timeline.shots(selected=True) or timeline.shots()
+for shot in shots:
+   print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
+```
 
 ### Limitations
 - As of November 2025, only Timeline exports are handled.  These can be with or without selected shots.
