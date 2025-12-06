@@ -106,7 +106,7 @@ With `scratchparse` you can easily parse the command line as a Scratch custom-co
 ```
 from scratchXML import scratchparse
 
-parser = scratchparse(usage=“Print out shot info", require_shot_selection=False)
+parser = scratchparse(usage="Print out shot info", require_shot_selection=False)
 args = parser.parse_args()
 
 scratch = Scratch(xml=args.inputxml) # ‘inputxml’ is the standard args attribute for the XML that Scratch writes out to Temp
@@ -115,6 +115,26 @@ timeline = scratch.constructs[0]
 shots = timeline.shots(selected=True) or timeline.shots()
 for shot in shots:
    print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
+```
+This reports the following usage message:
+```
+%> ./scratch_example.py -h
+usage: scratch_example.py [-h] <input XML> <output XML>
+
+Print out shot info
+
+positional arguments:
+  <input XML>
+  <output XML>
+
+options:
+  -h, --help    show this help message and exit
+
+Scratch custom command settings:
+    Type: Application
+    Wait till Finished: On
+    XML Export: Timeline
+    Require Shot Selection: Off
 ```
 
 ### Limitations
