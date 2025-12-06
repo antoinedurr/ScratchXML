@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 #
-# A library for Assimilate Scratch
+# scratch_playlist2copypaste.py -- Scratch Custom Command to place the playlist filepaths into the copy/paste buffer.
 #
 import sys, os
 import re

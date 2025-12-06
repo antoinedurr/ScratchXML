@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 #
-# A library for Assimilate Scratch
+# scratch_export_csv.py -- Scratch Custom Command to write .csv of the all shots' metadata.
 #
 import sys
 import os
