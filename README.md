@@ -2,7 +2,7 @@
 Python module to read and write Assimilate Scratch custom-command XML output.
 
 ### Description
-The _ScratchXML_ module converts an XML hierarchy output by [Assimilate Scratch](https://www.assimilateinc.com/products/) into an object based hierarchy.
+The _scratchXML_ module converts an XML hierarchy output by [Assimilate Scratch](https://www.assimilateinc.com/products/) into an object based hierarchy.
 It defines Scratch(), Construct(), Slot(), and Shot() classes that closely mirror the XML.
 
 The typical use case is in support of a Scratch [Custom Command](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx).
@@ -15,7 +15,10 @@ Elements that are inline, e.g. the `uuid` in <shot uuid='123456789123456789'> ar
 You can also create Scratch timelines from -- scratch, then output the XML and read them into Scratch.
 
 ### Dependencies
-This module depends on the [xml2dict](https://pypi.org/project/XML2Dict/) module.
+This module depends on the [xmltodict](https://pypi.org/project/xmltodict) module which you can get via:
+```
+pip install xmltodict
+```
 
 ### Installing
 ```
