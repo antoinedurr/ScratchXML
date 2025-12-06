@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 #
 # scratch_export_csv.py -- Scratch Custom Command to write .csv of the all shots' metadata.
+# Copyright (C) 2025 Antoine Durr
+# antoine@antoinedurr.com
 #
 import sys
 import os

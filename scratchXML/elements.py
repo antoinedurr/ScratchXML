@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 #
-# A library for Assimilate Scratch 
+# scratchXML.elements.py -- Classes representing Scratch XML elements
+# Copyright (C) 2025 Antoine Durr
+# antoine@antoinedurr.com
 #
 import xmltodict
 import pprint

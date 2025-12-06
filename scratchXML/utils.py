@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 #
-# A library for Assimilate Scratch
+# scratchXML.utils.py -- Utility functions for scratchXML
+# Copyright (C) 2025 Antoine Durr
+# antoine@antoinedurr.com
 #
 import sys
 

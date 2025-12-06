@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 #
 # scratch_playlist2copypaste.py -- Scratch Custom Command to place the playlist filepaths into the copy/paste buffer.
+# Copyright (C) 2025 Antoine Durr
+# antoine@antoinedurr.com
 #
 import sys, os
 import re
