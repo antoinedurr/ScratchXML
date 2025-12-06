@@ -17,7 +17,7 @@ from scratchXML import scratchparse, shotinfo
 
 def main():
     '''
-    Scratch Custom Command to write .csv of the all shots' metadat.  
+    Scratch Custom Command to write .csv of the all shots' metadata.  
     This will write it to the Scratch project Temp folder as <construct_name>.csv
 
     Once written, it calls 'open' on the csv file for viewing.  It also places the csv filepath into the copy/paste buffer.
