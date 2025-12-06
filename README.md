@@ -2,7 +2,7 @@
 Python module to read and write Assimilate Scratch custom-command XML output.
 
 ### Description
-The _ScratchXML_ module creates a Pythonic representation of the hierarchy in a [Assimilate Scratch](https://www.assimilateinc.com/products/) project.
+The _ScratchXML_ module converts an XML hierarchy output by [Assimilate Scratch](https://www.assimilateinc.com/products/) into an object based hierarchy.
 It defines Scratch(), Construct(), Slot(), and Shot() classes that closely mirror the XML output from Scratch.
 The typical usage is to create a Scratch [Custom Command](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) that reads the XML exported by Scratch prior to running the custom command.
 ScratchXML refactors the XML output into the corresponding hierarchy of ScratchElement instances.
@@ -20,7 +20,7 @@ for slot in s.constructs[0].slots:
   for shot in slot.shots:
     print(f"Shot: {shot.name} Metadata: {shot.metadata}") # print out metadata for each shot
 ```
-In the above, `construcs` is a list of `Construct()` objects, `slots` is a list of `Slot()` objects,
+In the above, `constructs` is a list of `Construct()` objects, `slots` is a list of `Slot()` objects,
 and `shots` is the list of `Shot()` in each slot.
 
 A more sophisticated usage reverses shot versions within a slot:
