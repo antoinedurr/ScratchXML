@@ -14,12 +14,12 @@ from scratchXML import scratchparse, shotinfo
 
 def main():
     '''
-Scratch Custom Command to place the playlist filepaths into the copy/paste buffer.
+    Scratch Custom Command to place the playlist filepaths into the copy/paste buffer.
 
-The default behavior is to grab all the bottom row shots in the timeline.  However, if there
-are any selected shots, only those selected shots will be placed into the copy/paste buffer.
+    The default behavior is to grab all the bottom row shots in the timeline.  However, if there
+    are any selected shots, only those selected shots will be placed into the copy/paste buffer.
 
-This frame number on files will be replace with '.####.', e.g. foo.1001.exr -> foo.####.exr
+    This frame number on files will be replace with '.####.', e.g. foo.1001.exr -> foo.####.exr
     '''
 
     parser = scratchparse(usage=main.__doc__, require_shot_selection=False, wait_til_finished=False)

@@ -17,10 +17,10 @@ from scratchXML import scratchparse, shotinfo
 
 def main():
     '''
-Scratch Custom Command to write .csv of the all shots' metadat.  
-This will write it to the Scratch project Temp folder as <construct_name>.csv
+    Scratch Custom Command to write .csv of the all shots' metadat.  
+    This will write it to the Scratch project Temp folder as <construct_name>.csv
 
-Once written, it calls 'open' on the csv file for viewing.  It also places the csv filepath into the copy/paste buffer.
+    Once written, it calls 'open' on the csv file for viewing.  It also places the csv filepath into the copy/paste buffer.
     '''
     parser = scratchparse(usage=main.__doc__, require_shot_selection=False, wait_til_finished=False)
     parser.add_argument('-meta', action='store_true', help='Include all metadata keys in the CSV')
