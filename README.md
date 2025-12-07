@@ -36,19 +36,16 @@ fully working Scratch custom commands.
 
 
 ### Getting Started
-#### Using/Importing
-The most typical approach is to process XML output by Scratch.
-```
-from scratchXML import Scratch
-```
+#### Importing Scratch elements
 
-If you are creating an XML file from the ground up, then you'll need to import all the elements:
 ```
+# The most typical approach is to process XML output by Scratch.
+from scratchXML import Scratch 
+
+# If you are creating an XML file from the ground up, then you'll need to import all the elements
 from scratchXML import Scratch, Construct, Slot, Shot
-```
 
-The module also defines some utilities that make custom commands easier to write:
-```
+# The module also defines some utilities that make custom commands easier to write:
 from scratchXML import scratchparse, shotinfo
 ```
 
@@ -69,7 +66,8 @@ There are some convenience methods, e.g. Construct() has a shots() method, so th
 ```
 from scratchXML import Scratch
 scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
-shots = construct.shots(selected=True) or construct.shots() # get list of selected shots in timeline, or if no selection, all shots
+timeline = scratch.constructs[0]
+shots = timeline.shots(selected=True) or timeline.shots() # get list of selected shots in timeline, or if no selection, all shots
 
 for shot in shots: # iterate through all the shots
   print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
@@ -101,7 +99,7 @@ s.write(xml="new.xml")
 ```
 N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
 
-#### parsing the command line
+#### Parsing the command line
 With `scratchparse` you can easily parse the command line as a Scratch custom-command:
 ```
 from scratchXML import scratchparse
