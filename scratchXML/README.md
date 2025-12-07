@@ -1,9 +1,10 @@
-### Files in scratchXML folder:
+### Module files in scratchXML folder:
 
 #### elements.py
   - The main entry point class `Scratch`
   - The secondary classes `Construct`, `Slot`, `Shot`
-####  utils.py
+
+#### utils.py
   - `scratchparse`
     - An Argparse overlay class dedicated to easy custom-command command line parsing
   - `shotinfo`
