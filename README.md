@@ -33,6 +33,7 @@ The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/exampl
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
 - **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
 
+See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
 
 ### Getting Started
 #### Importing Scratch elements
