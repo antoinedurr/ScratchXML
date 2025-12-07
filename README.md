@@ -100,11 +100,11 @@ s.write(xml="new.xml")
 N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
 
 #### Parsing the command line
-With `scratchparse` you can easily parse the command line as a Scratch custom-command:
+With `scratchparse` you can easily parse the command line to easily create a working Scratch custom-command:
 ```
 from scratchXML import scratchparse
 
-parser = scratchparse(usage="Print out shot info", require_shot_selection=False)
+parser = scratchparse(usage="Print out info for each shot, including metadata dict")
 args = parser.parse_args()
 
 scratch = Scratch(xml=args.inputxml) # ‘inputxml’ is the standard args attribute for the XML that Scratch writes out to Temp
