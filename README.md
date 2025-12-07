@@ -28,8 +28,7 @@ pip install xmltodict
 
 
 ### Examples
-The `examples` folder contains Scratch custom command Python scripts.  These contain
-fully working Scratch custom commands.
+The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
 
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
 - **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
