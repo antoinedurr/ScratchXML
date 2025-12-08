@@ -196,19 +196,27 @@ class Scratch(ScratchElement):
     """
     def __init__(self, xml=None):
         self._lineage = Lineage('constructs', 'construct', Construct)
-        # super().__init__(None, self._lineage, parsemeta=True)
-        xmldict = {}
 
         if xml:
             xmldict = self.read(xml=xml)['scratch'] # bootstrap into hierarchy
-            # print("unparsedchildren before:")
-            # pprint.pprint(xmldict)
+            # set lineage depending on whether the XML is a timeline(construct) or groups export
+            if 'constructs' in xmldict:
+                self._lineage = Lineage('constructs', 'construct', Construct)
+            if 'group' in xmldict:
+                xmldict['groups'] = {'group': xmldict['group']} # to make it consistent with constructs
+                del xmldict['group']
+
+                self._lineage = Lineage('groups', 'group', Group)
+        else:
+            xmldict = {}
 
         super().__init__(xmldict, self._lineage, parsemeta=True) # rerun the ScratchElement constructor which will invoke parsechildren
+        # pprint.pprint(self.xmldict)
+
 
     def read(self, xml=None):
         '''
-        Read an XML file and return the parsed dictionary.
+        Read an XML file and return the parsed dictionary.  This is typically invoked via the constructor, e.g. s = Scratch(xml='file.xml')
         
         :param xml: Filepath of XML file.
         '''
@@ -217,7 +225,7 @@ class Scratch(ScratchElement):
                 file_content = fp.read()
 
                 # this is the raw xml.  When user wants a group, for example, we need to see if dict is properly parsed
-                return xmltodict.parse(file_content, force_list=["construct", "slot", "shot", "dataitem"]) # force these items to always be lists
+                return xmltodict.parse(file_content, force_list=["group", "construct", "slot", "shot", "dataitem"]) # force these items to always be lists
         return None
 
     def write(self, xml=None):
@@ -228,7 +236,11 @@ class Scratch(ScratchElement):
         '''
         if xml:
             self.xmldict = {'scratch': self.unparsechildren()}
-
+            # pprint.pprint(self.xmldict)
+            if 'groups' in self.xmldict['scratch']:
+                # need to convert back to singular 'group' for xmltodict
+                self.xmldict['scratch']['group'] = self.xmldict['scratch']['groups']['group']
+                del self.xmldict['scratch']['groups']
             # print("unparsedchildren after:")
             # pprint.pprint(self.xmldict)
             with open(xml, 'w') as fp:
@@ -238,7 +250,12 @@ class Scratch(ScratchElement):
 # ---------------------------------------------------------------------
 
 class Group(ScratchElement):
-    pass
+    '''
+    Object representation of a Scratch Group, which contains Constructs
+    '''
+    def __init__(self, xmldict=None):
+        self._lineage = Lineage('constructs', 'construct', Construct)
+        super().__init__(xmldict, self._lineage)
 
 # ---------------------------------------------------------------------
 
