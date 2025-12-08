@@ -10,10 +10,9 @@ from types import SimpleNamespace
 import argparse
 
 
-class shotinfo(SimpleNamespace):
-    pass  # convenient namespace for shot data
+class shotinfo(SimpleNamespace): pass  # convenient namespace for shot data
 
-class scratchargs(SimpleNamespace): pass
+class scratchargs(SimpleNamespace): pass # convenient namespace for scratch custom command arguments
 
 class scratchparse(argparse.ArgumentParser):
     '''
