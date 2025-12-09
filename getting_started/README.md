@@ -1,8 +1,8 @@
 ### Getting Started Examples & Tuturial
 
-This examples in this folder are in support of the main page's README's examples section. 
+This examples in this folder are in support of the main page's README's examples section. The files (unlike the code excerpts below) start "at the top" with the proper imports.
 
-#### **Print shot info - example1**
+#### Example 1 - Print Shot Info
 The example1.py script reads an xml file created with a Timeline export from within Scratch.  Internally it recreates the hierarchy, then iterates through the shots in the timeline printing information about each shot.  This is the most basic of examples of getting information from your shots.
 ```
 from scratchXML import Scratch
@@ -11,22 +11,18 @@ from scratchXML import Scratch
 scratch = Scratch(xml='xml/example1.xml')
 
 # iterate through all the constructs (there will be only one) and print out shot info
-for construct in scratch.constructs:
-  for slot in construct.slots:  # iterate through all the slots
-    for shot in slot.shots:  # finally, iterate through all the shots
+for construct in scratch.constructs:  # likely to be only one construct if export was 'Timeline'
+  for slot in construct.slots:        # iterate through all the slots
+    for shot in slot.shots:           # finally, iterate through all the shots
       print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
 ```
 
-#### Print shot names and metadata (easier)
-There are some convenience methods, e.g. Construct() has a shots() method, so the above could be shortened to:
+#### Example 2 - Print shot names and metadata (easier)
+There are some convenience methods, e.g. `Construct` has a shots() method, so the above could be shortened to:
 ```
-from scratchXML import Scratch
-scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
-timeline = scratch.constructs[0]
-shots = timeline.shots(selected=True) or timeline.shots() # get list of selected shots in timeline, or if no selection, all shots
-
-for shot in shots: # iterate through all the shots
-  print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
+for shot in scratch.construct[0].shots():         # iterate through all the shots, assuming a single timeline
+  print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}") # print out shot info
+  pprint.pprint(shot.metadata, sort_dicts=False)  # print out metadata for each shot using `pprint`
 ```
 
 #### Reverse shot order within slots
