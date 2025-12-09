@@ -27,15 +27,16 @@ pip install xmltodict
 
 
 
-### Examples
-The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
+### Working Examples
+The [examples_working folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_working) contains some fully working Scratch custom commands.
 
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
 - **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
 
 See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
 
-### Getting Started
+### Getting Started Examples
+Each example here is available in the [examples_getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_getting_started).
 #### Importing Scratch elements
 
 ```
@@ -52,12 +53,15 @@ from scratchXML import scratchparse, shotinfo
 #### Print shots and metadata
 ```
 from scratchXML import Scratch
-scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
 
-for construct in scratch.constructs: # iterate through all the constructs (there will be only one)
-  for slot in construct.slots: # iterate through all the slots
-    for shot in slot.shots: # finally, iterate through all the shots
-      print(f"Shot: {shot.name} ({shot.slot} {shot.layer} Metadata: {shot.metadata}") # print out metadata for each shot
+# read example1.xml and convert into a Scratch() hierarchy
+scratch = Scratch(xml='xml/example1.xml')
+
+# iterate through all the constructs (there will be only one) and print out shot info
+for construct in scratch.constructs:
+  for slot in construct.slots:  # iterate through all the slots
+    for shot in slot.shots:  # finally, iterate through all the shots
+      print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
 ```
 Attributes on objects can be read as attributes or dictionary elements (shot['name'] == shot.name).  However, they currently can only be updated as dictionary elements.
 
