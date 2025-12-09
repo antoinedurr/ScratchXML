@@ -16,6 +16,15 @@ for construct in scratch.constructs:  # likely to be only one construct if expor
     for shot in slot.shots:           # finally, iterate through all the shots
       print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
 ```
+The expected output is as follows:
+```
+%> python3 scratch_example1.py xml/example1.xml
+Shot: A192_C001_1123S9[1] slot: 0 layer: 0 file: /Volumes/ABCD/Media/RAWs/A192_C001_1123S9.RDC/A192_C001_1123S9_001.R3D
+Shot: A110_C004_1015BJ[1] slot: 1 layer: 0 file: /Volumes/ABCD/Media/RAWs/A110_C004_1015BJ.RDC/A110_C004_1015BJ_001.R3D
+Shot: A120_C001_1017EN[1] slot: 2 layer: 0 file: /Volumes/ABCD/Media/RAWs/A120_C001_1017EN.RDC/A120_C001_1017EN_001.R3D
+Shot: A171_C022_1112RI[1] slot: 3 layer: 0 file: /Volumes/ABCD/Media/RAWs/A171_C022_1112RI.RDC/A171_C022_1112RI_001.R3D
+Shot: B060_C004_1029E9[1] slot: 4 layer: 0 file: /Volumes/ABCD/Media/RAWs/B060_C004_1029E9.RDC/B060_C004_1029E9_001.R3D
+```
 
 #### Example 2 - Print shot names and metadata (easier)
 There are some convenience methods, e.g. `Construct` has a shots() method, so the above could be shortened to:
