@@ -1,5 +1,5 @@
 # ScratchXML
-Python module to read and write Assimilate Scratch custom-command XML files.
+Python module to read, manipulate, and write Assimilate Scratch custom-command XML files.
 
 ### Description
 The _scratchXML_ module converts an XML hierarchy output by [Assimilate Scratch](https://www.assimilateinc.com/products/) into an object based hierarchy.
@@ -21,31 +21,21 @@ You can also create Scratch timelines from -- scratch, then output the XML and r
 - [xmltodict](https://pypi.org/project/xmltodict) - convert XML into a dictionary
 
 ### Module
-The scratchXML module exports the following classes and functions:
+The [scratchXML module](https://github.com/antoinedurr/ScratchXML/tree/main/scratchXML) exports the following classes and functions:
 - `Scratch` - the main entry point to creating a navigable dictionary hierarchy from XML output by Scratch
 - `Group`, `Construct`, `Slot`, `Shot` - the elements that make up the dictionary hierarcy
 - `scratchparse` - an Argparse overlay class that makes custom-command parsing easy and consistent
-- `shotinfo` - a convenience Simplenamespace overlay for storing arbitrary attributes of a shot
+- `shotinfo` - a convenience SimpleNamespace overlay for storing arbitrary attributes of a shot
 
 ### Getting Started
-
-#### Importing Scratch elements
-The most typical approach is to process XML output by Scratch.  The `Scratch` class supports reading and writing the custom-command XML.
+The most typical use case is to process XML output by Scratch.  The `Scratch` class supports reading and writing the custom-command XML.  Upon reading the XML, it converts it to a dictionary (using xmltodict), and then reworks the hierarchy to turn the list of constructs into a list of actual `Construct` objects, which then contains a list of `Slot` objects, each of which has zero or more `Shot` objects.
 ```
-from scratchXML import Scratch
-scratch = Scratch(xml='xml/example1.xml')
-```
-The `Scratch` class constructor reads the XML file, converts it to a dictionary (using xmltodict), and then reworks the hierarchy to turn the list of constructs into a list of actual `Construct` objects, which then contains a list of `Slot` objects, each of which has zero or more `Shot` objects.
-
-
-#### Print shot info
-```
-from scratchXML import Scratch
+from scratchXML import Scratch        # import the only thing we actually need
 
 # read example1.xml and convert into a Scratch() hierarchy
 scratch = Scratch(xml='xml/example1.xml')
 
-# print out info on each shot
+# iterate our way down the hierarchy
 for construct in scratch.constructs:  # iterate through all the constructs
   for slot in construct.slots:        # iterate through all the slots
     for shot in slot.shots:           # finally, iterate through all the shots
@@ -66,6 +56,5 @@ See the Assimilate Scratch Docs for [how to install](https://www.assimilatesuppo
 ### Limitations
 - As of December 2025, only Timeline and Group exports are handled.  These can be with or without selected shots.
 - Most attributes need to be modified using dictionary updates, e.g. shot['MOS'] = "N", not shot.MOS = "N".
-- Scratch XML doesn't contain the _entire_ project.  For example, only base grades are included, layers are not
-- when reading XML back in, Scratch won't rearrange shots -- it's really only designed to modify shots in place
-  - the solution to the above is to manually import the output XML into Scratch.
+- Scratch XML doesn't contain the _entire_ project.  For example, only base grades are included, grading layers are not
+- when reading XML back in, Scratch won't automatically rearrange shots -- it's really only designed to modify shots in place.  The solution to this is to manually import the output XML into Scratch and delete the old construct(s).
