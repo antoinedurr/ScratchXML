@@ -16,11 +16,16 @@ You can also create Scratch timelines from -- scratch, then output the XML and r
 
 
 ### Installing
-```
-pip install git+https://github.com/antoinedurr/ScratchXML
-```
+- ```pip install git+https://github.com/antoinedurr/ScratchXML```
 ### Dependencies
 - [xmltodict](https://pypi.org/project/xmltodict) - convert XML into a dictionary
+
+### Module
+The scratchXML module exports the following classes and functions:
+- `Scratch` - the main entry point to creating a navigable dictionary hierarchy from XML output by Scratch
+- `Group`, `Construct`, `Slot`, `Shot` - the elements that make up the dictionary hierarcy
+- `scratchparse` - an Argparse overlay class that makes custom-command parsing easy and consistent
+- `shotinfo` - a convenience Simplenamespace overlay for storing arbitrary attributes of a shot
 
 ### Getting Started
 
