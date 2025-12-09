@@ -27,15 +27,16 @@ pip install xmltodict
 
 
 
-### Examples
-The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
+### Working Examples
+The [examples_working folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_working) contains some fully working Scratch custom commands.
 
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
 - **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
 
 See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
 
-### Getting Started
+### Getting Started Examples
+Each example here is available in the [examples_getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_getting_started).
 #### Importing Scratch elements
 
 ```
