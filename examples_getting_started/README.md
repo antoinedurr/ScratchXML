@@ -3,7 +3,7 @@
 This examples in this folder are in support of the main page's README's examples section. 
 
 - **scratch_example1.py**
-```
+  - ```
 from scratchXML import Scratch
 
 # read example1.xml and convert into a Scratch() hierarchy
