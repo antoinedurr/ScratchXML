@@ -211,8 +211,6 @@ class Scratch(ScratchElement):
             xmldict = {}
 
         super().__init__(xmldict, self._lineage, parsemeta=True) # rerun the ScratchElement constructor which will invoke parsechildren
-        # pprint.pprint(self.xmldict)
-
 
     def read(self, xml=None):
         '''
@@ -227,6 +225,12 @@ class Scratch(ScratchElement):
                 # this is the raw xml.  When user wants a group, for example, we need to see if dict is properly parsed
                 return xmltodict.parse(file_content, force_list=["group", "construct", "slot", "shot", "dataitem"]) # force these items to always be lists
         return None
+    
+    def timeline(self):
+        '''
+        Return the first (usually only) timeline
+        '''
+        return self.constructs[0]
 
     def write(self, xml=None):
         '''
