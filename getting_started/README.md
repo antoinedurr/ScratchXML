@@ -1,8 +1,8 @@
-### Getting Started Examples
+### Getting Started Examples & Tuturial
 
 This examples in this folder are in support of the main page's README's examples section. 
 
-#### **scratch_example1.py** 
+#### **Print shot info - example1**
 The example1.py script reads an xml file created with a Timeline export from within Scratch.  Internally it recreates the hierarchy, then iterates through the shots in the timeline printing information about each shot.  This is the most basic of examples of getting information from your shots.
 ```
 from scratchXML import Scratch
@@ -15,5 +15,79 @@ for construct in scratch.constructs:
   for slot in construct.slots:  # iterate through all the slots
     for shot in slot.shots:  # finally, iterate through all the shots
       print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
+```
+
+#### Print shot names and metadata (easier)
+There are some convenience methods, e.g. Construct() has a shots() method, so the above could be shortened to:
+```
+from scratchXML import Scratch
+scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
+timeline = scratch.constructs[0]
+shots = timeline.shots(selected=True) or timeline.shots() # get list of selected shots in timeline, or if no selection, all shots
+
+for shot in shots: # iterate through all the shots
+  print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
+```
+
+#### Reverse shot order within slots
+A more sophisticated usage reverses shot versions within a slot:
+```
+from scratchXML import Scratch
+scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
+
+for construct in scratch.constructs:
+  for slot in s.constructs[0].slots:
+    slot.shots = reversed(slot.shots)  # see limitations
+scratch['update'] = "Y" # tell Scratch to update from the resulting xml
+scratch.write('res-0.xml')  # write out resulting file
+```
+
+#### Create XML from scratch
+You can also create a Scratch timeline from the ground up, though this approach is not yet well supported:
+```
+from scratchXML import Scratch
+scratch = Scratch()  # start with a blank slate
+
+s = Scratch()
+s.constructs.append(Slot())
+s.constructs[0].slots[0].append(Shot())
+s.write(xml="new.xml")
+```
+N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
+
+#### Parsing the command line
+With `scratchparse` you can easily parse the command line to easily create a working Scratch custom-command:
+```
+from scratchXML import scratchparse
+
+parser = scratchparse(usage="Print out info for each shot, including metadata dict")
+args = parser.parse_args()
+
+scratch = Scratch(xml=args.inputxml) # ‘inputxml’ is the standard args attribute for the XML that Scratch writes out to Temp
+timeline = scratch.constructs[0]
+
+shots = timeline.shots(selected=True) or timeline.shots()
+for shot in shots:
+   print(f"Shot: {shot.name} ({shot.slot} {shot.layer}) Metadata: {shot.metadata}") # print out metadata for each shot
+```
+This reports the following usage message:
+```
+%> ./scratch_example.py -h
+usage: scratch_example.py [-h] <input XML> <output XML>
+
+Print out shot info
+
+positional arguments:
+  <input XML>
+  <output XML>
+
+options:
+  -h, --help    show this help message and exit
+
+Scratch custom command settings:
+    Type: Application
+    Wait till Finished: On
+    XML Export: Timeline
+    Require Shot Selection: Off
 ```
 
