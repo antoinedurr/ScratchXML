@@ -26,17 +26,8 @@ pip install xmltodict
 ```
 
 
-
-### Working Examples
-The [examples_working folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_working) contains some fully working Scratch custom commands.
-
-- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
-- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
-
-See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
-
 ### Getting Started Examples
-Each example here is available in the [examples_getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_getting_started).
+Each example here is available in the [getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples_getting_started).
 #### Importing Scratch elements
 
 ```
@@ -138,6 +129,15 @@ Scratch custom command settings:
     XML Export: Timeline
     Require Shot Selection: Off
 ```
+
+
+### Working Examples
+The working [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
+
+- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
+- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
+
+See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
 
 ### Limitations
 - As of November 2025, only Timeline exports are handled.  These can be with or without selected shots.
