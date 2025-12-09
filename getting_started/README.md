@@ -2,7 +2,7 @@
 
 This examples in this folder are in support of the main page's README's examples section. The files (unlike the code excerpts below) start "at the top" with the proper imports.
 
-#### Example 1 - Print Shot Info
+#### [Example 1](https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example1.py) - Print Shot Info
 The example1.py script reads an xml file created with a Timeline export from within Scratch.  Internally it recreates the hierarchy, then iterates through the shots in the timeline printing information about each shot.  This is the most basic of examples of getting information from your shots.
 ```
 from scratchXML import Scratch
