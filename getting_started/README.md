@@ -3,6 +3,7 @@
 This examples in this folder are in support of the main page's README's examples section. 
 
 #### **scratch_example1.py** 
+The example1.py script reads an xml file created with a Timeline export from within Scratch.  Internally it recreates the hierarchy, then iterates through the shots in the timeline printing information about each shot.  This is the most basic of examples of getting information from your shots.
 ```
 from scratchXML import Scratch
 
@@ -15,5 +16,4 @@ for construct in scratch.constructs:
     for shot in slot.shots:  # finally, iterate through all the shots
       print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
 ```
-  - This Python Scratch custom command script creates a .csv file with a line for each shot containing information about the shot.  If there are selected
-shots, then the CSV will only contain those shots.
+
