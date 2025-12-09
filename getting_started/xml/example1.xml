@@ -466,7 +466,7 @@
 					<smode>Once</smode>
 					<shots>
 						<shot uuid="41FF5FC2-E2C1-47BC-8DC4-4DDBF41BA15F" type="6ebf0150-a939-46d0-8132-73291d76b3bd" slot="2" layer="0">
-							<file>/Volumes/ABCD/RAWs/A120_C001_1017EN.RDC/A120_C001_1017EN_001.R3D</file>
+							<file>/Volumes/ABCD/Media/RAWs/A120_C001_1017EN.RDC/A120_C001_1017EN_001.R3D</file>
 							<name>A120_C001_1017EN[1]</name>
 							<reel_id>A120</reel_id>
 							<fps>24.000</fps>
@@ -654,7 +654,7 @@
 					<smode>Once</smode>
 					<shots>
 						<shot uuid="41A2D00B-9B75-4D02-8F35-DE6E5D946FF6" type="6ebf0150-a939-46d0-8132-73291d76b3bd" slot="3" layer="0">
-							<file>/Volumes/ABCD/RAWs/A171_C022_1112RI.RDC/A171_C022_1112RI_001.R3D</file>
+							<file>/Volumes/ABCD/Media/RAWs/A171_C022_1112RI.RDC/A171_C022_1112RI_001.R3D</file>
 							<name>A171_C022_1112RI[1]</name>
 							<reel_id>A171</reel_id>
 							<fps>24.000</fps>
@@ -836,7 +836,7 @@
 					<smode>Once</smode>
 					<shots>
 						<shot uuid="C73A9F9C-110D-4E79-A73C-349BD08815E0" type="6ebf0150-a939-46d0-8132-73291d76b3bd" slot="4" layer="0">
-							<file>/Volumes/ABCD/RAWs/B060_C004_1029E9.RDC/B060_C004_1029E9_001.R3D</file>
+							<file>/Volumes/ABCD/Media/RAWs/B060_C004_1029E9.RDC/B060_C004_1029E9_001.R3D</file>
 							<name>B060_C004_1029E9[1]</name>
 							<reel_id>B060</reel_id>
 							<fps>24.000</fps>
