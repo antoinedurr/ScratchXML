@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+from scratchXML import Scratch
+
+# read example1.xml and convert into a Scratch() hierarchy
+scratch = Scratch(xml='xml/example1.xml')
+
+# iterate through all the constructs (there will be only one)
+for construct in scratch.constructs:
+  for slot in construct.slots:  # iterate through all the slots
+    for shot in slot.shots:  # finally, iterate through all the shots
+      # print out metadata for each shot
+      print(
+          f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
