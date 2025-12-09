@@ -52,12 +52,15 @@ from scratchXML import scratchparse, shotinfo
 #### Print shots and metadata
 ```
 from scratchXML import Scratch
-scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
 
-for construct in scratch.constructs: # iterate through all the constructs (there will be only one)
-  for slot in construct.slots: # iterate through all the slots
-    for shot in slot.shots: # finally, iterate through all the shots
-      print(f"Shot: {shot.name} ({shot.slot} {shot.layer} Metadata: {shot.metadata}") # print out metadata for each shot
+# read example1.xml and convert into a Scratch() hierarchy
+scratch = Scratch(xml='xml/example1.xml')
+
+# iterate through all the constructs (there will be only one) and print out shot info
+for construct in scratch.constructs:
+  for slot in construct.slots:  # iterate through all the slots
+    for shot in slot.shots:  # finally, iterate through all the shots
+      print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
 ```
 Attributes on objects can be read as attributes or dictionary elements (shot['name'] == shot.name).  However, they currently can only be updated as dictionary elements.
 
