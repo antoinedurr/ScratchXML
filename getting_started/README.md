@@ -26,13 +26,22 @@ Shot: A171_C022_1112RI[1] slot: 3 layer: 0 file: /Volumes/ABCD/Media/RAWs/A171_C
 Shot: B060_C004_1029E9[1] slot: 4 layer: 0 file: /Volumes/ABCD/Media/RAWs/B060_C004_1029E9.RDC/B060_C004_1029E9_001.R3D
 ```
 
-#### Example 2 - Print shot names and metadata (easier)
-There are some convenience methods, e.g. `Construct` has a shots() method, so the above could be shortened to:
+#### [Example 2](https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example2.py) - Print Shot Info and metadata (easier way)
+Needing a triple nested for-loop gets really old, thus use `Construct`'s `shots()` method.  `shots()` has some optional parameters
+including 'selected' and 'bottom_row' which let you pick and choose what category of shots you want.  We're using selected
+shots in this example.
 ```
-for shot in scratch.construct[0].shots():         # iterate through all the shots, assuming a single timeline
-  print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}") # print out shot info
-  pprint.pprint(shot.metadata, sort_dicts=False)  # print out metadata for each shot using `pprint`
+for shot in scratch.constructs[0].shots(selected=True):  # only selected shots
+  print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
+  # pprint.pprint(shot.metadata) # uncomment to pretty-print the metadata dictionary
 ```
+Returning only the selected shots, you get this:
+```
+%> python3 scratch_example2.py
+Shot: A192_C001_1123S9[1] slot: 0 layer: 0 file: /Volumes/ABCD/Media/RAWs/A192_C001_1123S9.RDC/A192_C001_1123S9_001.R3D
+Shot: A110_C004_1015BJ[1] slot: 1 layer: 0 file: /Volumes/ABCD/Media/RAWs/A110_C004_1015BJ.RDC/A110_C004_1015BJ_001.R3D
+```
+The 'selected' parameter can take True (return only selected shots), False (return only non-selected shots), or None (return all shots).
 
 #### Reverse shot order within slots
 A more sophisticated usage reverses shot versions within a slot:
