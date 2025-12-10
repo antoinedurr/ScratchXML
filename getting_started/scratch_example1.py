@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+#
+# https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example1.py
+# A simple example showing how to read a Scratch XML file
+
 from scratchXML import Scratch
 
 # read example1.xml and convert into a Scratch() hierarchy
