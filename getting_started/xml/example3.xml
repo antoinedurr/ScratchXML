@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scratch datetime="2025-12-11T08:31:53" version="9.8.1191" project="ABCD" project_path="/Library/Application Support/Assimilator/Project/ABCD" media_path="/Volumes/Macintosh HD/Users/antoine/WOW" render_path="/Volumes/Macintosh HD/Users/antoine/WOW/Render" temp_path="/Library/Application Support/Assimilator/Project/ABCD/Temp/" watch_folder="/Library/Application Support/Assimilator/Watch">
+<scratch datetime="2025-12-11T08:31:53" version="9.8.1191" project="ABCD" project_path="/Library/Application Support/Assimilator/Project/ABCD" media_path="/Volumes/ABCD" render_path="/Volumes/ABCD/Render" temp_path="/Library/Application Support/Assimilator/Project/ABCD/Temp/" watch_folder="/Library/Application Support/Assimilator/Watch">
 	<constructs>
-		<construct name="Timeline 4" mode="1">
+		<construct name="Timeline 3" mode="1">
 			<resolution>
 				<w>1920</w>
 				<h>1080</h>
