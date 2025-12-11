@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scratch datetime="2025-12-11T08:31:53" version="9.8.1191" project="WOTW" project_path="/Library/Application Support/Assimilator/Project/WOTW" media_path="/Volumes/Macintosh HD/Users/antoine/WOW" render_path="/Volumes/Macintosh HD/Users/antoine/WOW/Render" temp_path="/Library/Application Support/Assimilator/Project/WOTW/Temp/" watch_folder="/Library/Application Support/Assimilator/Watch">
+	<constructs>
+		<construct name="Timeline 4" mode="1">
+			<resolution>
+				<w>1920</w>
+				<h>1080</h>
+			</resolution>
+			<fps>24.000</fps>
+			<record_tc>00:00:00:00</record_tc>
+			<slots>
+				<slot index="0">
+					<length>159</length>
+					<timecode>00:00:00:00</timecode>
+					<transition>
+						<type>Cut</type>
+						<before>0</before>
+						<after>0</after>
+					</transition>
+					<smode>Once</smode>
+					<shots>
+						<shot uuid="09CF9A03-140E-4974-BC83-8C36F032F209" type="4823CDE5-74BB-425B-92E8-0699A027F7C3" slot="0" layer="0">
+							<file>/Volumes/ABCD/Media/A004_C004_v3.mov</file>
+							<name>A004_C004_latest_v3</name>
+							<fps>24.000</fps>
+							<frame_tc>91813</frame_tc>
+							<timecode>01:03:45:13</timecode>
+							<length>159</length>
+							<handles>
+								<in>0</in>
+								<out>158</out>
+								<start>01:03:45:13</start>
+								<end>01:03:52:03</end>
+							</handles>
+							<size>
+								<width>1920</width>
+								<height>1080</height>
+							</size>
+							<view>
+								<projection_type>normal</projection_type>
+								<stereo_mode>mono</stereo_mode>
+							</view>
+							<colorgrade>
+								<input>
+									<colorspace>Rec709</colorspace>
+									<eotf>Gamma 2.4</eotf>
+								</input>
+							</colorgrade>
+							<MOS>N</MOS>
+							<audio>
+								<item>
+									<file>embedded</file>
+									<offset>0</offset>
+								</item>
+							</audio>
+							<metadata>
+								<dataitem>
+									<key>Bit Depth</key>
+									<value>8</value>
+								</dataitem>
+								<dataitem>
+									<key>Compression</key>
+									<value>DNxHD 36 1080p</value>
+								</dataitem>
+								<dataitem t="3">
+									<key>File Size</key>
+									<value>31133998</value>
+								</dataitem>
+							</metadata>
+						</shot>
+						<shot uuid="6D3364C3-5957-4AD3-BAE2-9BBE382A7EB7" type="4823CDE5-74BB-425B-92E8-0699A027F7C3" slot="0" layer="1" selected="Y">
+							<file>/Volumes/ABCD/Media/A004_C004_v2.mov</file>
+							<name>A004_C004_middle_v2</name>
+							<fps>24.000</fps>
+							<frame_tc>91813</frame_tc>
+							<timecode>01:03:45:13</timecode>
+							<length>159</length>
+							<handles>
+								<in>0</in>
+								<out>158</out>
+								<start>01:03:45:13</start>
+								<end>01:03:52:03</end>
+							</handles>
+							<size>
+								<width>1920</width>
+								<height>1080</height>
+							</size>
+							<view>
+								<projection_type>normal</projection_type>
+								<stereo_mode>mono</stereo_mode>
+							</view>
+							<colorgrade>
+								<input>
+									<colorspace>Rec709</colorspace>
+									<eotf>Gamma 2.4</eotf>
+								</input>
+							</colorgrade>
+							<MOS>N</MOS>
+							<audio>
+								<item>
+									<file>embedded</file>
+									<offset>0</offset>
+								</item>
+							</audio>
+							<metadata>
+								<dataitem>
+									<key>Bit Depth</key>
+									<value>8</value>
+								</dataitem>
+								<dataitem>
+									<key>Compression</key>
+									<value>DNxHD 36 1080p</value>
+								</dataitem>
+								<dataitem t="3">
+									<key>File Size</key>
+									<value>31133998</value>
+								</dataitem>
+							</metadata>
+						</shot>
+						<shot uuid="1376D368-8E95-4F1F-B108-2AF88F8CEC15" type="4823CDE5-74BB-425B-92E8-0699A027F7C3" slot="0" layer="2">
+							<file>/Volumes/ABCD/Media/A004_C004_v1.mov</file>
+							<name>A004_C004_first_v1</name>
+							<fps>24.000</fps>
+							<frame_tc>91813</frame_tc>
+							<timecode>01:03:45:13</timecode>
+							<length>159</length>
+							<handles>
+								<in>0</in>
+								<out>158</out>
+								<start>01:03:45:13</start>
+								<end>01:03:52:03</end>
+							</handles>
+							<size>
+								<width>1920</width>
+								<height>1080</height>
+							</size>
+							<view>
+								<projection_type>normal</projection_type>
+								<stereo_mode>mono</stereo_mode>
+							</view>
+							<colorgrade>
+								<input>
+									<colorspace>Rec709</colorspace>
+									<eotf>Gamma 2.4</eotf>
+								</input>
+							</colorgrade>
+							<MOS>N</MOS>
+							<audio>
+								<item>
+									<file>embedded</file>
+									<offset>0</offset>
+								</item>
+							</audio>
+							<metadata>
+								<dataitem>
+									<key>Bit Depth</key>
+									<value>8</value>
+								</dataitem>
+								<dataitem>
+									<key>Compression</key>
+									<value>DNxHD 36 1080p</value>
+								</dataitem>
+								<dataitem t="3">
+									<key>File Size</key>
+									<value>31133998</value>
+								</dataitem>
+							</metadata>
+						</shot>
+					</shots>
+				</slot>
+			</slots>
+		</construct>
+	</constructs>
+</scratch>
