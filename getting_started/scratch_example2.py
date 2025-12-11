@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# https: // github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example1.py
+# https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example2.py
 # A simpler way to iterate through the shots
 #
 from scratchXML import Scratch

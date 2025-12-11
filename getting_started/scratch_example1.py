@@ -13,5 +13,4 @@ for construct in scratch.constructs:
   for slot in construct.slots:  # iterate through all the slots
     for shot in slot.shots:  # finally, iterate through all the shots
       # print out metadata for each shot
-      print(
-          f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
+      print(f"Shot: {shot.name} slot: {shot.slot} layer: {shot.layer} file: {shot.file}")
