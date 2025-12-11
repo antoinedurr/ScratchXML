@@ -57,19 +57,6 @@ scratch.write('xml/output.xml')        # write out resulting file
 ```
 In Scratch, export is Timeline, but Wait-til-finished is on, this causes Scratch to pass a results file argument to the script. Scratch needs to be told to update itself with what it reads back in.
 
-#### Create XML from scratch
-You can also create a Scratch timeline from the ground up, though this approach is not yet well supported:
-```
-from scratchXML import Scratch
-scratch = Scratch()  # start with a blank slate
-
-s = Scratch()
-s.constructs.append(Slot())
-s.constructs[0].slots[0].append(Shot())
-s.write(xml="new.xml")
-```
-N.B. this aspect of the code is not well developed as of Nov. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
-
 #### Parsing the command line
 With `scratchparse` you can easily parse the command line to easily create a working Scratch custom-command:
 ```
@@ -105,4 +92,16 @@ Scratch custom command settings:
     XML Export: Timeline
     Require Shot Selection: Off
 ```
+#### Create XML from scratch
+You can also create a Scratch timeline from the ground up, though this approach is not yet well supported:
+```
+from scratchXML import Scratch
+scratch = Scratch()  # start with a blank slate
+
+s = Scratch()
+s.constructs.append(Slot())
+s.constructs[0].slots[0].append(Shot())
+s.write(xml="new.xml")
+```
+N.B. this aspect of the code is not well developed as of Dec. 2025, i.e. no default attributes are created as you would expect with an empty slot, blank shot, etc.
 
