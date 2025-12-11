@@ -1,6 +1,6 @@
 ### Getting Started Examples & Tuturial
 
-This examples in this folder are in support of the main page's README's examples section. The files (unlike the code excerpts below) start "at the top" with the proper imports.
+This examples in this folder are in support of the main page's README's examples section. The files (unlike the code excerpts below) start "at the top" with the proper imports, and occasionally have a bit more information than the code excerpts below.
 
 #### [Example 1](https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example1.py) - Print Shot Info
 The example1.py script reads an xml file created with a Timeline export from within Scratch.  Internally it recreates the hierarchy, then iterates through the shots in the timeline printing information about each shot.  This is the most basic of examples of getting information from your shots.
@@ -43,18 +43,19 @@ Shot: A110_C004_1015BJ[1] slot: 1 layer: 0 file: /Volumes/ABCD/Media/RAWs/A110_C
 ```
 The 'selected' parameter can take True (return only selected shots), False (return only non-selected shots), or None (return all shots).
 
-#### Reverse shot order within slots
-A more sophisticated usage reverses shot versions within a slot:
+#### [Example 3](https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example3.py) - Reverse shot order within slots
+A more sophisticated usage reverses shot versions within a slot.  
 ```
 from scratchXML import Scratch
-scratch = Scratch(xml='cmd-0.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
+scratch = Scratch(xml='xml/example3.xml')  # read cmd-0.xml and convert into a Scratch() hierarchy
 
 for construct in scratch.constructs:
-  for slot in s.constructs[0].slots:
+  for slot in construct.slots:
     slot.shots = reversed(slot.shots)  # see limitations
-scratch['update'] = "Y" # tell Scratch to update from the resulting xml
-scratch.write('res-0.xml')  # write out resulting file
+scratch['@update'] = "Y"               # tell Scratch to update from the resulting xml
+scratch.write('xml/output.xml')        # write out resulting file
 ```
+In Scratch, export is Timeline, but Wait-til-finished is on, this causes Scratch to pass a results file argument to the script. Scratch needs to be told to update itself with what it reads back in.
 
 #### Create XML from scratch
 You can also create a Scratch timeline from the ground up, though this approach is not yet well supported:
