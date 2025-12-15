@@ -91,6 +91,21 @@ Scratch custom command settings:
     XML Export: Timeline
     Require Shot Selection: Off
 ```
+and creates the following output:
+```
+%> python3 scratch_example4.py xml/example4.xml 
+scratchXML: scratch_example4.py xml/example4.xml 
+Shot: A192_C001_1123S9 Slot: 0 Layer: 0 Metadata:
+{   'File Size': '37694607360',
+    'Source Resolution': '7168x3780',
+    'camera_firmware_version': '7.2.2',
+    'camera_id': 'A',
+    'camera_model': 'RED EPIC-W 8K S35',
+    'camera_model_id': '14',
+.
+.
+.
+```
 #### Create XML from scratch
 You can also create a Scratch timeline from the ground up, though this approach is not yet well supported:
 ```
