@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example4.py
-# Reverse the order of shots in each slot
+# Print out metadata on each shot
 #
 from scratchXML import Scratch
 from scratchXML import scratchparse  # Argparse subclass specific to ScratchXML 
