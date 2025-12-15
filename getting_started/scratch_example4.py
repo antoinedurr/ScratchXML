@@ -14,7 +14,9 @@ args = parser.parse_args()
 scratch = Scratch(xml=args.inputxml)
 timeline = scratch.constructs[0]
 
+# get the selected shots, or if none were selected, get all shots
 shots = timeline.shots(selected=True) or timeline.shots()
+
 for shot in shots:
    # print out metadata for each shot
    print(f"Shot: {shot.name} Slot: {shot.slot} Layer: {shot.layer} Metadata:\n{pprint.pformat(shot.metadata, indent=4)}")

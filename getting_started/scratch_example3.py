@@ -5,7 +5,7 @@
 #
 from scratchXML import Scratch
 
-# read cmd-0.xml and convert into a Scratch() hierarchy
+# read example3.xml and convert into a Scratch() hierarchy
 scratch = Scratch(xml='xml/example3.xml')
 
 print([shot.name for shot in scratch.constructs[0].slots[0].shots])  # before reversal
