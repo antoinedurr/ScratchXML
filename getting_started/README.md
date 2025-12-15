@@ -57,12 +57,12 @@ scratch.write('xml/output.xml')        # write out resulting file
 ```
 In Scratch, export is Timeline, but Wait-til-finished is on, this causes Scratch to pass a results file argument to the script. Scratch needs to be told to update itself with what it reads back in.
 
-#### Parsing the command line
-With `scratchparse` you can easily parse the command line to easily create a working Scratch custom-command:
+#### [Example 4](https://github.com/antoinedurr/ScratchXML/blob/main/getting_started/scratch_example4.py) - Parsing the command line
+With `scratchparse` you can easily parse the command line to create working Scratch custom-commands with minimal code.  `scratchparse` is an Argparse subclass that has `scratchXML` specific additions to ensure a consistent visual format.  The XML input and output arguments are placed into inputxml and outputxml (the latter only if wait_til_finished is True).
 ```
-from scratchXML import scratchparse
+from scratchXML import scratchparse 
 
-parser = scratchparse(usage="Print out info for each shot, including metadata dict")
+parser = scratchparse(usage="Print out info for each shot, including metadata dict", wait_til_finished=False)
 args = parser.parse_args()
 
 scratch = Scratch(xml=args.inputxml) # ‘inputxml’ is the standard args attribute for the XML that Scratch writes out to Temp
@@ -74,21 +74,20 @@ for shot in shots:
 ```
 This reports the following usage message:
 ```
-%> ./scratch_example.py -h
-usage: scratch_example.py [-h] <input XML> <output XML>
+%> python3 scratch_example4.py -h
+usage: scratch_example4.py [-h] <input XML>
 
-Print out shot info
+Print out info for each shot, including metadata dict
 
 positional arguments:
   <input XML>
-  <output XML>
 
 options:
-  -h, --help    show this help message and exit
+  -h, --help   show this help message and exit
 
 Scratch custom command settings:
     Type: Application
-    Wait till Finished: On
+    Wait till Finished: Off
     XML Export: Timeline
     Require Shot Selection: Off
 ```
