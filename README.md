@@ -45,8 +45,11 @@ Information on objects can be read as attributes or dictionary elements (shot['n
 
 Please see the full [getting-started tutorial](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started).  This has a progression of examples that will make using the module clear, as well as exemplify the utilities that make writing Assimilate Scratch custom commands quick and easy.  Test .xml files are also included.
 
+### Templates
+There are a small handful of [templates](https://github.com/antoinedurr/ScratchXML/tree/main/examples) that you can use when you're creating a new Scratch custom command.
+
 ### Examples
-The [working examples](https://github.com/antoinedurr/ScratchXML/tree/main/examples) folder contains some fully working Scratch custom commands.
+The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
 
 - **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
 - **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
