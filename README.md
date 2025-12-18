@@ -27,7 +27,7 @@ The [scratchXML module](https://github.com/antoinedurr/ScratchXML/tree/main/scra
 - `scratchparse` - an Argparse overlay class that makes custom-command parsing easy and consistent
 - `shotinfo` - a convenience SimpleNamespace overlay for storing arbitrary attributes of a shot
 
-### Getting Started
+### Usage
 The most typical use case is to process XML output by Scratch.  The `Scratch` class supports reading and writing the custom-command XML.  Upon reading the XML, it converts it to a dictionary (using xmltodict), and then reworks the hierarchy to turn the list of constructs into a list of actual `Construct` objects, which then contains a list of `Slot` objects, each of which has zero or more `Shot` objects.
 ```
 from scratchXML import Scratch        # import the only thing we actually need
@@ -43,18 +43,18 @@ for construct in scratch.constructs:  # iterate through all the constructs N.B. 
 ```
 Information on objects can be read as attributes or dictionary elements (shot['name'] == shot.name).  However, they currently can only be updated as dictionary elements.
 
-Please see the full [getting-started tutorial](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started).  This has a progression of examples that will make using the module clear, as well as exemplify the utilities that make writing Assimilate Scratch custom commands quick and easy.  Test .xml files are also included.
+### Getting Started
 
-### Templates
-There are a small handful of [templates](https://github.com/antoinedurr/ScratchXML/tree/main/examples) that you can use when you're creating a new Scratch custom command.
+The README in the [getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started) contains a complete [getting-started tutorial](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started).  This has a progression of examples that will make using the module clear, as well as exemplify the utilities that make writing Assimilate Scratch custom commands quick and easy.  Test .xml files are also included.
+
 
 ### Examples
-The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.
-
-- **scratch_export_csv.py** -- writes out shot info and (optionally) metadata to a .csv file and opens file
-- **scratch_playlist2copypaste.py** -- grabs the bottom row of shots and puts the filepaths into the copy/paste buffer
+The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.  These scripts do real work on Scratch timelines, e.g. export the data as CSV, or find mismatches between shot versions inside slots.
 
 See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
+
+### Templates
+The [templates folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains full fledged custom commands, but they don't do anything.  They iterate through the shots, etc. but contain little actual business logic.  When writing a new custom command, you should start with one of these as they contain the latest elements for how to navigate the Scratch XML hierarchy.
 
 ### Limitations
 - As of December 2025, only Timeline and Group exports are handled.  These can be with or without selected shots.
