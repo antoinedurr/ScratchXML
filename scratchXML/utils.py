@@ -138,7 +138,7 @@ def windows_popup(message, title, style):
     48: Exclamation-point icon (warning)
     64: Information-sign icon (an 'i' in a circle)
     """
-    dll = getattr(ctypes, 'windll', None)
+    dll = getattr(ctypes, 'windll', None) # so that we don't error out on non-windows systems
     if dll is not None:
         dll.user32.MessageBoxW(0, message, title, style)
 
