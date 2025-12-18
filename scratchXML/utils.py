@@ -4,10 +4,15 @@
 # Copyright (C) 2025 Antoine Durr
 # antoine@antoinedurr.com
 #
+import ctypes
+from os import system
 import sys
 
 from types import SimpleNamespace
 import argparse
+import subprocess
+import platform
+import ctypes
 
 
 class shotinfo(SimpleNamespace): pass  # convenient namespace for shot data
@@ -101,4 +106,39 @@ Scratch custom command settings:
         print("scratchXML:", command, parsedargs.inputxml, parsedargs.outputxml if hasattr(parsedargs, 'outputxml') else '', file=sys.stderr)
 
         return scratchargs(**vars(parsedargs)) # give it back to them with our name on it instead of simplenamespace
+
+
+def scratchmessage(message, title="ScratchXML"):
+    '''
+    Pops up a simple dialog box with OK button.  Only Mac at the moment.
+    '''
+    if platform.system() == 'Darwin':
+        mac_popup(message, title)
+    elif platform.system() == 'Windows':
+        windows_popup(message, title, 0) # info icon
+
+
+def mac_popup(message, title):
+    tell = f'Tell application \"System Events\" to display dialog \"{message}\" with title \"scratchXML: {title}\" buttons {{"OK"}} default button "OK"'
+    subprocess.run(["osascript", "-e", tell])
+
+
+def windows_popup(message, title, style):
+    """
+    Displays a native Windows message box.
+    Style codes (add them together for combinations, e.g., 16 for error icon + 0 for OK button):
+    0 : OK button only
+    1 : OK and Cancel buttons
+    2 : Abort, Retry, and Ignore buttons
+    3 : Yes, No, and Cancel buttons
+    4 : Yes and No buttons
+    5 : Retry and No buttons
+    16: Stop-sign icon (error)
+    32: Question-mark icon
+    48: Exclamation-point icon (warning)
+    64: Information-sign icon (an 'i' in a circle)
+    """
+    dll = getattr(ctypes, 'windll', None)
+    if dll is not None:
+        dll.user32.MessageBoxW(0, message, title, style)
 

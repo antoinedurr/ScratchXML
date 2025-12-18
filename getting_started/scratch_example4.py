@@ -20,3 +20,9 @@ shots = timeline.shots(selected=True) or timeline.shots()
 for shot in shots:
    # print out metadata for each shot
    print(f"Shot: {shot.name} Slot: {shot.slot} Layer: {shot.layer} Metadata:\n{pprint.pformat(shot.metadata, indent=4)}")
+   shot.metadata['example_key'] = 'example_value'  # modify metadata example
+
+# scratch['@action'] = "update"
+scratch['@action'] = "update" # options are: udate, append, insert, 
+
+scratch.write(xml=args.outputxml)
