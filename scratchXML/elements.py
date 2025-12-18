@@ -181,6 +181,10 @@ class ScratchElement:
         self.xmldict['metadata'] = {d['key']: d['value']
                                     for d in self.xmldict['metadata'].get('dataitem', [])}
 
+        #if 'notes' in self.xmldict:
+        #    self.xmldict['notes'] = [note]
+        #                            for d in self.xmldict['notes'].get('note', [])}
+
     def unparsemeta(self):
         '''
         Undo the metadata dict back to a dataitem array
