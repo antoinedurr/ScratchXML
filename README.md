@@ -45,11 +45,11 @@ Information on objects can be read as attributes or dictionary elements (shot['n
 
 ### Getting Started
 
-The README in the [getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started) contains a complete [getting-started tutorial](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started).  This has a progression of examples that will make using the module clear, as well as exemplify the utilities that make writing Assimilate Scratch custom commands quick and easy.  Test .xml files are also included.
+The README in the [getting_started folder](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started) contains a complete [getting-started tutorial](https://github.com/antoinedurr/ScratchXML/tree/main/getting_started).  This has a progression of super simple examples and code snippets that will make using the module clear, as well as exemplify the utilities that make writing Assimilate Scratch custom commands quick and easy.  Test .xml files are also included.
 
 
 ### Examples
-The [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains some fully working Scratch custom commands.  These scripts do real work on Scratch timelines, e.g. export the data as CSV, or find mismatches between shot versions inside slots.
+Unlike the code snippets in the getting_started folder, the [examples folder](https://github.com/antoinedurr/ScratchXML/tree/main/examples) contains fully working Scratch custom commands.  These scripts do real work on Scratch timelines, e.g. export the data as CSV, or find mismatches between shot versions inside slots.
 
 See the Assimilate Scratch Docs for [how to install](https://www.assimilatesupport.com/akb/KnowledgebaseArticle51000.aspx) the custom command into Scratch.
 
