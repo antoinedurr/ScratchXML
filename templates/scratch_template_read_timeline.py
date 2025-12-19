@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 #
-# https://github.com/antoinedurr/ScratchXML/blob/main/templates/scratch_template1.py
+# https://github.com/antoinedurr/ScratchXML/blob/main/templates/scratch_template_read_timeline.py
 # scratchXML template to list info on selected shots (or all shots if none selected)
 # arguments is only input XML file
 #
 from scratchXML import Scratch
 from scratchXML import scratchparse  # Argparse subclass specific to ScratchXML
-import pprint
 
 parser = scratchparse(usage="Print info for each selected shot", wait_til_finished=False)
 args = parser.parse_args()
