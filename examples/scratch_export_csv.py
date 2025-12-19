@@ -1,6 +1,8 @@
 #!/usr/local/bin/python3
 #
-# scratch_export_csv.py -- Scratch Custom Command to write .csv of the all shots' metadata.
+# https://github.com/antoinedurr/ScratchXML/blob/main/examples/scratch_export_csv.py
+# Assimilate Scratch custom command example to write .csv of the all shots' metadata.
+#
 # Copyright (C) 2025 Antoine Durr
 # antoine@antoinedurr.com
 #
